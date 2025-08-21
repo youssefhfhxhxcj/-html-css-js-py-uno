@@ -1,236 +1,537 @@
-<html dir="rtl" lang="ar">
- <head>
-  <meta charset="utf-8"/>
-
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   موقع لغات البرمجة
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&amp;display=swap" rel="stylesheet"/>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أكاديمية البرمجة الشاملة | HTML • CSS • JS • C++ • Python • Java • C# • PHP • Node • React • Arduino</title>
+  <meta name="description" content="موقع تعليمي احترافي يشرح أهم لغات وتقنيات البرمجة من الصفر للاحتراف مع أمثلة، كود جاهز، بحث سريع، وضع ليلي، ومراجع موثوقة." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=El+Messiri:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <style>
-   body {
-      font-family: 'Cairo', sans-serif;
-    }
+    :root {
+      --bg: #0f172a; /* slate-900 */
+      --card: #0b1220; /* darker */
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --brand: linear-gradient(135deg, #06b6d4 0%, #10b981 50%, #8b5cf6 100%);
+      --accent: #22d3ee;
+      --radius: 18px;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: radial-gradient(1200px 600px at 80% -10%, rgba(34, 211, 238, .08), transparent 60%),
+              radial-gradient(900px 500px at -10% 10%, rgba(139, 92, 246, .08), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* Header/Hero */
+header.hero {
+  position: relative;
+  padding: 90px 20px 60px;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(800px 400px at 50% -10%, rgba(16, 185, 129, .15), transparent 60%),
+    radial-gradient(700px 350px at 100% 10%, rgba(6, 182, 212, .12), transparent 60%);
+}
+
+.logo {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(6px);
+}
+
+.logo i { font-size: 20px; color: #a78bfa; }
+.logo span { font-weight: 700; letter-spacing: .5px; }
+
+.hero h1 {
+  font-family: 'El Messiri', sans-serif;
+  font-size: clamp(28px, 3.2vw + 12px, 54px);
+  margin: 18px auto 10px;
+  line-height: 1.15;
+  background: var(--brand);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.hero p {
+  max-width: 900px; margin: 0 auto; color: var(--muted);
+  font-size: clamp(14px, 1.2vw + 8px, 18px);
+}
+
+.cta-row { margin-top: 22px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+  border: 0; cursor: pointer; border-radius: 999px; padding: 12px 18px; font-weight: 700;
+  background: rgba(255,255,255,.06); color: var(--text); box-shadow: var(--shadow);
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.btn.primary { background: var(--brand); color: white; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,.35); }
+
+/* Nav */
+nav.top {
+  position: sticky; top: 0; z-index: 30;
+  backdrop-filter: blur(10px);
+  background: rgba(10, 15, 28, .55);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav-wrap { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 10px 14px; gap: 10px; }
+.links { display: flex; gap: 10px; flex-wrap: wrap; }
+.links a { text-decoration: none; color: #d1d5db; font-weight: 700; padding: 8px 12px; border-radius: 10px; }
+.links a:hover { background: rgba(255,255,255,.06); color: white; }
+
+.util { display: flex; align-items: center; gap: 10px; justify-content: end; }
+
+.search {
+  position: relative; flex: 1 1 320px; max-width: 520px; margin: 8px auto;
+}
+.search input {
+  width: 100%; padding: 12px 42px 12px 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05); color: var(--text); outline: none; font-size: 15px; transition: border .2s ease, box-shadow .2s ease;
+}
+.search input:focus { border-color: rgba(34,211,238,.6); box-shadow: 0 0 0 4px rgba(34,211,238,.15); }
+.search i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+
+/* Sections */
+main { max-width: 1200px; margin: 26px auto; padding: 0 14px 80px; }
+
+section.block { margin: 28px 0; }
+.block h2 { margin: 4px 0 14px; font-size: 28px; letter-spacing: .2px; }
+.block .subtitle { color: var(--muted); margin-bottom: 18px; }
+
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(12, 1fr); }
+.col-12 { grid-column: span 12; }
+.col-6 { grid-column: span 6; }
+.col-4 { grid-column: span 4; }
+.col-3 { grid-column: span 3; }
+@media (max-width: 1024px){ .col-6, .col-4, .col-3 { grid-column: span 6; } }
+@media (max-width: 640px){ .col-6, .col-4, .col-3 { grid-column: span 12; } }
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: 16px; box-shadow: var(--shadow);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card:hover { transform: translateY(-6px); border-color: rgba(34,211,238,.5); box-shadow: 0 30px 70px rgba(0,0,0,.45); }
+
+.card h3 { margin: 6px 0 8px; font-size: 20px; }
+.meta { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+
+pre, code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background: #0b1220; color: #e2e8f0; border: 1px solid rgba(148,163,184,.2);
+  border-radius: 12px; padding: 10px; overflow: auto; direction: ltr; text-align: left;
+}
+pre { margin: 10px 0 0; }
+
+.tag { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 12px; padding: 6px 10px; border-radius: 999px; background: rgba(34,211,238,.12); border: 1px solid rgba(34,211,238,.3); color: #67e8f9; }
+
+/* Table */
+.table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 12px; }
+.table th, .table td { border: 1px solid rgba(255,255,255,.08); padding: 12px 10px; }
+.table th { background: rgba(255,255,255,.06); }
+
+/* Footer */
+footer { border-top: 1px solid rgba(255,255,255,.08); color: var(--muted); text-align: center; padding: 28px 12px 60px; }
+
+/* Floating buttons */
+.fab {
+  position: fixed; bottom: 22px; left: 22px; z-index: 40;
+  display: flex; gap: 10px; flex-direction: column;
+}
+.fab button {
+  width: 46px; height: 46px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06); color: white; cursor: pointer; box-shadow: var(--shadow);
+  display: grid; place-items: center; font-size: 16px; transition: transform .2s ease, background .2s ease;
+}
+.fab button:hover { transform: translateY(-3px); }
+
+/* Hide on print */
+@media print { .fab, nav.top, .search { display: none !important; } body { background: white; color: #111827; } .card { box-shadow: none; }
+}
+
   </style>
- </head>
- <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-  <header class="bg-blue-700 text-white shadow">
-   <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
-    <div class="flex items-center space-x-3 rtl:space-x-reverse">
-     <i class="fas fa-code fa-2x">
-     </i>
-     <h1 class="text-2xl font-bold">
-      موقع لغات البرمجة
-     </h1>
+</head><body>
+  <!-- HERO -->
+  <header class="hero" data-aos="fade-down">
+    <div class="logo"><i class="fa-solid fa-code"></i><span>أكاديمية البرمجة الشاملة</span></div>
+    <h1>تعلّم أهم لغات وتقنيات البرمجة من الصفر للاحتراف</h1>
+    <p>صفحة واحدة فاخرة تجمع كل ما تحتاجه: دروس مختصرة + أمثلة عملية + مصادر موثوقة + بحث سريع + وضع ليلي، بتصميم عصري كأنه مشروع بمستوى شركات.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#start"><i class="fa-solid fa-rocket"></i>&nbsp;ابدأ الآن</a>
+      <a class="btn" href="#resources"><i class="fa-solid fa-book"></i>&nbsp;مراجع وكتب</a>
     </div>
-    <nav class="mt-3 md:mt-0">
-     <ul class="flex space-x-6 rtl:space-x-reverse text-lg font-semibold">
-      <li>
-       <a class="hover:text-yellow-300 transition" href="#home">
-        الرئيسية
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-yellow-300 transition" href="#languages">
-        لغات البرمجة
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-yellow-300 transition" href="#about">
-        من نحن
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-yellow-300 transition" href="#contact">
-        تواصل معنا
-       </a>
-      </li>
-     </ul>
-    </nav>
-   </div>
-  </header>
-  <main class="flex-grow container mx-auto px-4 py-10">
-   <section class="mb-16 text-center" id="home">
-    <h2 class="text-4xl font-extrabold mb-4 text-blue-700">
-     مرحباً بكم في عالم لغات البرمجة
-    </h2>
-    <p class="text-lg max-w-3xl mx-auto text-gray-700">
-     في هذا الموقع ستتعرف على أشهر لغات البرمجة، مميزاتها، استخداماتها، وأحدث الأخبار المتعلقة بها. سواء كنت مبتدئًا أو محترفًا، ستجد هنا كل ما تحتاجه لتطوير مهاراتك البرمجية.
-    </p>
-    <img alt="صورة توضيحية لشاشة حاسوب تعرض كود برمجي ملون مع رموز تقنية وأيقونات برمجية" class="mx-auto mt-8 rounded-lg shadow-lg" height="300" src="https://storage.googleapis.com/a1aa/image/19255fcf-93c9-454d-3c86-47ebb164bc59.jpg" width="600"/>
-   </section>
-   <section class="mb-16" id="languages">
-    <h2 class="text-3xl font-bold mb-8 text-blue-700 text-center">
-     أشهر لغات البرمجة
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-     <article class="bg-white rounded-lg shadow p-6 flex flex-col">
-      <img alt="شعار لغة بايثون Python باللون الأزرق والأصفر مع ثعبانين متداخلين على خلفية بيضاء" class="rounded mb-4" height="200" src="py.jpg" width="400"/>
-      <h3 class="text-xl font-semibold mb-2">
-       بايثون (Python)
-      </h3>
-      <p class="flex-grow text-gray-700">
-       لغة برمجة عالية المستوى وسهلة التعلم، تستخدم في تطوير الويب، تحليل البيانات، الذكاء الاصطناعي، وأتمتة المهام.
-      </p>
-      <a class="mt-4 inline-block text-blue-600 hover:text-blue-800 font-semibold" href="https://www.python.org/" target="_blank">
-       المزيد عن بايثون
-       <i class="fas fa-arrow-left mr-1">
-       </i>
-      </a>
-     </article>
-     <article class="bg-white rounded-lg shadow p-6 flex flex-col">
-      <img alt="شعار لغة جافا Java عبارة عن فنجان قهوة بخطوط حمراء وبرتقالية على خلفية بيضاء" class="rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/1052078b-caca-44d5-0d7e-3af5b5ea3120.jpg" width="400"/>
-      <h3 class="text-xl font-semibold mb-2">
-       جافا (Java)
-      </h3>
-      <p class="flex-grow text-gray-700">
-       لغة برمجة قوية تستخدم في تطوير تطبيقات الأندرويد، تطبيقات سطح المكتب، والخوادم، مع قابلية عالية للنقل بين الأنظمة.
-      </p>
-      <a class="mt-4 inline-block text-blue-600 hover:text-blue-800 font-semibold" href="https://www.java.com/" target="_blank">
-       المزيد عن جافا
-       <i class="fas fa-arrow-left mr-1">
-       </i>
-      </a>
-     </article>
-     <article class="bg-white rounded-lg shadow p-6 flex flex-col">
-      <img alt="شعار لغة جافاسكريبت JavaScript باللون الأصفر مع رموز برمجية على خلفية سوداء" class="rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/36117c41-765f-4035-8ca7-89a0b5fd0faf.jpg" width="400"/>
-      <h3 class="text-xl font-semibold mb-2">
-       جافاسكريبت (JavaScript)
-      </h3>
-      <p class="flex-grow text-gray-700">
-       لغة برمجة تستخدم بشكل رئيسي في تطوير واجهات المستخدم التفاعلية على الويب، وتدعم البرمجة الكائنية والوظيفية.
-      </p>
-      <a class="mt-4 inline-block text-blue-600 hover:text-blue-800 font-semibold" href="https://developer.mozilla.org/ar/docs/Web/JavaScript" target="_blank">
-       المزيد عن جافاسكريبت
-       <i class="fas fa-arrow-left mr-1">
-       </i>
-      </a>
-     </article>
-     <article class="bg-white rounded-lg shadow p-6 flex flex-col">
-      <img alt="شعار لغة C++ باللون الأزرق مع رموز برمجية على خلفية بيضاء" class="rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/87b7ff0b-3e98-4f0a-36cc-6148f5d7b59e.jpg" width="400"/>
-      <h3 class="text-xl font-semibold mb-2">
-       C++
-      </h3>
-      <p class="flex-grow text-gray-700">
-       لغة برمجة قوية تستخدم في تطوير الألعاب، البرمجيات عالية الأداء، وأنظمة التشغيل، وتدعم البرمجة الكائنية.
-      </p>
-      <a class="mt-4 inline-block text-blue-600 hover:text-blue-800 font-semibold" href="https://isocpp.org/" target="_blank">
-       المزيد عن C++
-       <i class="fas fa-arrow-left mr-1">
-       </i>
-      </a>
-     </article>
-     <article class="bg-white rounded-lg shadow p-6 flex flex-col">
-      <img alt="شعار لغة روبي Ruby على خلفية حمراء مع حجر ياقوت لامع" class="rounded mb-4" height="200" src="ruby.png" width="400"/>
-      <h3 class="text-xl font-semibold mb-2">
-       روبي (Ruby)
-      </h3>
-      <p class="flex-grow text-gray-700">
-       لغة برمجة سهلة القراءة والكتابة، تستخدم بشكل واسع في تطوير تطبيقات الويب باستخدام إطار العمل روبي أون ريلز.
-      </p>
-      <a class="mt-4 inline-block text-blue-600 hover:text-blue-800 font-semibold" href="https://www.ruby-lang.org/ar/" target="_blank">
-       المزيد عن روبي
-       <i class="fas fa-arrow-left mr-1">
-       </i>
-      </a>
-     </article>
-     <article class="bg-white rounded-lg shadow p-6 flex flex-col">
-      <img alt="شعار لغة C باللون الأزرق الداكن مع رموز برمجية على خلفية بيضاء" class="rounded mb-4" height="200" src="c.png" width="400"/>
-      <h3 class="text-xl font-semibold mb-2">
-       C
-      </h3>
-      <p class="flex-grow text-gray-700">
-       لغة برمجة منخفضة المستوى تستخدم في تطوير أنظمة التشغيل، البرمجيات المدمجة، وتعتبر أساسًا للعديد من اللغات الأخرى.
-      </p>
-      <a class="mt-4 inline-block text-blue-600 hover:text-blue-800 font-semibold" href="https://en.wikipedia.org/wiki/C_(programming_language)" target="_blank">
-       المزيد عن C
-       <i class="fas fa-arrow-left mr-1">
-       </i>
-      </a>
-     </article>
-     <article class="bg-white rounded-lg shadow p-6 flex flex-col">
-      <img alt="شعار أردوينو Arduino باللون الأزرق مع لوحة إلكترونية وأجزاء إلكترونية على خلفية بيضاء" class="rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/a17d3102-3e1e-4bd1-a4bb-247102543b97.jpg" width="400"/>
-      <h3 class="text-xl font-semibold mb-2">
-       أردوينو (Arduino)
-      </h3>
-      <p class="flex-grow text-gray-700">
-       منصة إلكترونية مفتوحة المصدر تستخدم لتطوير المشاريع الإلكترونية والروبوتات، وتُبرمج باستخدام لغة تشبه C/C++.
-      </p>
-      <a class="mt-4 inline-block text-blue-600 hover:text-blue-800 font-semibold" href="https://www.arduino.cc/" target="_blank">
-       المزيد عن أردوينو
-       <i class="fas fa-arrow-left mr-1">
-       </i>
-      </a>
-     </article>
+  </header>  <!-- NAV -->  <nav class="top">
+    <div class="nav-wrap">
+      <div class="links">
+        <a href="#web">الويب (HTML/CSS/JS)</a>
+        <a href="#cpp">C++</a>
+        <a href="#py">Python</a>
+        <a href="#java">Java</a>
+        <a href="#csharp">C#</a>
+        <a href="#php-node">PHP & Node</a>
+        <a href="#react">React</a>
+        <a href="#arduino">Arduino</a>
+      </div>
+      <div class="search">
+        <input id="searchInput" type="search" placeholder="ابحث داخل الدروس، الأمثلة، الكلمات المفتاحية… (جرب: DOM, pointers, OOP, async)" aria-label="بحث"/>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="util">
+        <button id="toggleTheme" class="btn" title="تبديل الوضع الليلي/الفاتح"><i class="fa-solid fa-moon"></i></button>
+        <a class="btn" href="#resources"><i class="fa-solid fa-book-open"></i>&nbsp;المراجع</a>
+      </div>
     </div>
-   </section>
-   <section class="mb-16 max-w-4xl mx-auto text-center" id="about">
-    <h2 class="text-3xl font-bold mb-6 text-blue-700">
-     من نحن
-    </h2>
-    <p class="text-lg text-gray-700 leading-relaxed">
-     نحن فريق من المطورين والمهتمين بعالم البرمجة، نسعى لتقديم محتوى تعليمي شامل ومبسط عن لغات البرمجة المختلفة. هدفنا هو تمكين الجميع من تعلم البرمجة بسهولة وتحقيق طموحاتهم التقنية.
-    </p>
-    <img alt="صورة لفريق من المطورين يعملون معاً على مشروع برمجي في مكتب حديث مع أجهزة حاسوب وشاشات متعددة" class="mt-8 rounded-lg shadow-lg mx-auto" height="300" src="mn.png" width="800"/>
-   </section>
-   <section class="max-w-3xl mx-auto bg-white rounded-lg shadow p-8" id="contact">
-    <h2 class="text-3xl font-bold mb-6 text-blue-700 text-center">
-     تواصل معنا
-    </h2>
-    <form action="#" class="space-y-6" dir="rtl" method="POST">
-     <div>
-      <label class="block mb-2 font-semibold text-gray-700" for="name">
-       الاسم الكامل
-      </label>
-      <input class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="name" name="name" placeholder="أدخل اسمك الكامل" required="" type="text"/>
-     </div>
-     <div>
-      <label class="block mb-2 font-semibold text-gray-700" for="email">
-       البريد الإلكتروني
-      </label>
-      <input class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" name="email" placeholder="example@example.com" required="" type="email"/>
-     </div>
-     <div>
-      <label class="block mb-2 font-semibold text-gray-700" for="message">
-       رسالتك
-      </label>
-      <textarea class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="message" name="message" placeholder="اكتب رسالتك هنا..." required="" rows="5"></textarea>
-     </div>
-     <div class="text-center">
-      <button class="bg-blue-700 text-white font-bold px-6 py-3 rounded hover:bg-blue-800 transition" type="submit">
-       إرسال
-      </button>
-     </div>
-    </form>
-   </section>
-  </main>
-  <footer class="bg-blue-700 text-white py-6 mt-12">
-   <div class="container mx-auto px-4 text-center">
-    <p>
-     © 2024 موقع لغات البرمجة. جميع الحقوق محفوظة.
-    </p>
-    <div class="mt-3 flex justify-center space-x-6 rtl:space-x-reverse">
-     <a aria-label="Facebook" class="hover:text-yellow-300 transition" href="#">
-      <i class="fab fa-facebook fa-lg">
-      </i>
-     </a>
-     <a aria-label="Twitter" class="hover:text-yellow-300 transition" href="#">
-      <i class="fab fa-twitter fa-lg">
-      </i>
-     </a>
-     <a aria-label="LinkedIn" class="hover:text-yellow-300 transition" href="#">
-      <i class="fab fa-linkedin fa-lg">
-      </i>
-     </a>
-     <a aria-label="GitHub" class="hover:text-yellow-300 transition" href="#">
-      <i class="fab fa-github fa-lg">
-      </i>
-     </a>
-    </div>
-   </div>
-  </footer>
- </body>
+  </nav>  <main id="start">
+    <!-- WEB -->
+    <section id="web" class="block" data-aos="fade-up">
+      <h2>الويب: HTML • CSS • JavaScript</h2>
+      <p class="subtitle">أساس بناء مواقع الويب الحديثة. ابدأ بـ HTML للهيكل، CSS للتصميم، ثم JS للتفاعل والمنطق.</p>
+      <div class="grid">
+        <!-- HTML Card -->
+        <article class="card col-4 topic" data-tags="html elements tags seo semantics forms">
+          <div class="tag"><i class="fa-brands fa-html5"></i> HTML</div>
+          <h3>مقدمة وأساسيات HTML</h3>
+          <p class="meta">الوسوم، البنية الدلالية، العناوين، الفقرات، الروابط، الصور، القوائم.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+  &lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;صفحة&lt;/title&gt; &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;مرحبًا&lt;/h1&gt;
+    &lt;a href="/about"&gt;من نحن&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+          <ul class="meta">
+            <li>وسوم مهمة: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code></li>
+          </ul>
+        </article><!-- CSS Card -->
+    <article class="card col-4 topic" data-tags="css layout grid flex responsive animation variables">
+      <div class="tag"><i class="fa-brands fa-css3-alt"></i> CSS</div>
+      <h3>تصميم و Responsive Layout</h3>
+      <p class="meta">Flexbox, Grid, ألوان متغيرة، أنيميشن وانتقالات.</p>
+
+<pre><code>/* شبكة بسيطة */
+.container { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+.card { grid-column: span 4; }
+@media (max-width: 768px){ .card { grid-column: span 12; } }
+</code></pre><p class="meta">نصائح: استخدم متغيرات CSS، وأعد استخدام المكوّنات، وانتبه للتباين.</p>
+    </article>
+
+    <!-- JS Card -->
+    <article class="card col-4 topic" data-tags="javascript dom events fetch async await modules">
+      <div class="tag"><i class="fa-brands fa-square-js"></i> JavaScript</div>
+      <h3>التفاعل والمنطق</h3>
+      <p class="meta">DOM، الأحداث، الوعود، async/await، وحدات ES.</p>
+
+<pre><code>// مثال جلب بيانات
+async function loadUsers(){
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const data = await res.json();
+  console.log(data);
+}
+loadUsers();
+</code></pre><p class="meta">جرّب التعامل مع LocalStorage و APIs و Modular JS.</p>
+    </article>
+  </div>
+</section>
+
+<!-- C++ / PY / JAVA / C# -->
+<section id="core" class="block" data-aos="fade-up">
+  <h2>لغات البرمجة الأساسية: C++ • Python • Java • C#</h2>
+  <p class="subtitle">مقارنة سريعة وأمثلة عملية لأكثر اللغات طلبًا في السوق.</p>
+  <div class="grid">
+    <article id="cpp" class="card col-6 topic" data-tags="c++ pointers oop stl performance">
+      <div class="tag"><i class="fa-solid fa-c"></i> C++</div>
+      <h3>لماذا C++؟</h3>
+      <p class="meta">أداء عالٍ، التحكم بالذاكرة، الألعاب والأنظمة.</p>
+
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main(){
+  cout &lt;&lt; "Hello C++";
+  return 0;
+}
+</code></pre><p class="meta">المواضيع: المؤشرات، OOP، القوالب، STL، إدارة الذاكرة.</p>
+    </article>
+
+    <article id="py" class="card col-6 topic" data-tags="python fast ai data scripting">
+      <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
+      <h3>لماذا Python؟</h3>
+      <p class="meta">بسيطة وسريعة للتطوير، علم البيانات والذكاء الاصطناعي.</p>
+
+<pre><code>def greet(name: str) -&gt; str:
+    return f"Hello {name}"
+print(greet("Youssef"))
+</code></pre><p class="meta">المواضيع: مكتبات مثل <code>requests</code>, <code>pandas</code>, <code>numpy</code>, أساسيات OOP.</p>
+    </article>
+
+    <article id="java" class="card col-6 topic" data-tags="java oop android spring">
+      <div class="tag"><i class="fa-brands fa-java"></i> Java</div>
+      <h3>لماذا Java؟</h3>
+      <p class="meta">قوية للمشاريع الكبيرة، Android، Spring.</p>
+
+<pre><code>class Main { public static void main(String[] a){ System.out.println("Hello Java"); } }
+</code></pre><p class="meta">المواضيع: JVM، المجموعات، الخيوط (Threads)، Spring Boot.</p>
+    </article>
+
+    <article id="csharp" class="card col-6 topic" data-tags="c# dotnet unity webapi">
+      <div class="tag"><i class="fa-solid fa-hashtag"></i> C#</div>
+      <h3>لماذا C#؟</h3>
+      <p class="meta">تطبيقات سطح المكتب، الويب (ASP.NET)، الألعاب (Unity).</p>
+
+<pre><code>using System; class App{ static void Main(){ Console.WriteLine("Hello C#"); } }
+</code></pre><p class="meta">المواضيع: LINQ، async/await، Entity Framework.</p>
+    </article>
+  </div>
+
+  <div class="card col-12" style="margin-top:16px" data-aos="zoom-in">
+    <h3>مقارنة سريعة</h3>
+    <table class="table">
+      <thead><tr><th>اللغة</th><th>الاستخدام</th><th>منحنى التعلّم</th><th>الأداء</th></tr></thead>
+      <tbody>
+        <tr><td>HTML/CSS/JS</td><td>واجهات ومواقع</td><td>سهل → متوسط</td><td>يعتمد على المتصفح</td></tr>
+        <tr><td>C++</td><td>أنظمة/ألعاب</td><td>متوسط → صعب</td><td>عالي جدًا</td></tr>
+        <tr><td>Python</td><td>بيانات/سكربت</td><td>سهل</td><td>متوسط</td></tr>
+        <tr><td>Java</td><td>مؤسسات/أندرويد</td><td>متوسط</td><td>عالي</td></tr>
+        <tr><td>C#</td><td>دسكتوب/ويب/ألعاب</td><td>متوسط</td><td>عالي</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PHP & NODE -->
+<section id="php-node" class="block" data-aos="fade-up">
+  <h2>الخلفية: PHP • Node.js</h2>
+  <p class="subtitle">خادوميات، REST APIs، قواعد البيانات، المصادقة.</p>
+  <div class="grid">
+    <article class="card col-6 topic" data-tags="php backend api mysql auth">
+      <div class="tag"><i class="fa-brands fa-php"></i> PHP</div>
+      <h3>REST API بسيط</h3>
+
+<pre><code>&lt;?php
+header('Content-Type: application/json');
+$users = [["id"=&gt;1,"name"=&gt;"Ali"],["id"=&gt;2,"name"=&gt;"Sara"]];
+echo json_encode($users);
+</code></pre><p class="meta">إطار عمل مقترح: Laravel. قاعدة بيانات: MySQL.</p>
+    </article>
+    <article class="card col-6 topic" data-tags="node express api mongodb jwt">
+      <div class="tag"><i class="fa-brands fa-node-js"></i> Node.js</div>
+      <h3>Express + JWT</h3>
+
+<pre><code>import express from 'express';
+const app = express();
+app.get('/api/hello', (req,res) =&gt; res.json({msg:'Hi'}));
+app.listen(3000);
+</code></pre><p class="meta">إطار عمل: Express/NestJS. قاعدة بيانات: MongoDB/PostgreSQL.</p>
+    </article>
+  </div>
+</section>
+
+<!-- REACT -->
+<section id="react" class="block" data-aos="fade-up">
+  <h2>React وواجهات حديثة</h2>
+  <p class="subtitle">مكوّنات قابلة لإعادة الاستخدام، حالة (State)، ربط APIs.</p>
+  <div class="grid">
+    <article class="card col-12 topic" data-tags="react hooks components props state">
+      <div class="tag"><i class="fa-brands fa-react"></i> React</div>
+      <h3>مكوّن بسيط</h3>
+
+<pre><code>function Hello({name}){ return &lt;h1&gt;Hello {name}&lt;/h1&gt; }
+</code></pre><p class="meta">جرّب Next.js للتوليد المسبق والـ SEO، وTailwind للتنسيق السريع.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ARDUINO -->
+<section id="arduino" class="block" data-aos="fade-up">
+  <h2>Arduino والإلكترونيات</h2>
+  <p class="subtitle">ابدأ بالـ IDE، افهم الـ Pins، جرّب الحساسات والمحركات.</p>
+  <div class="grid">
+    <article class="card col-6 topic" data-tags="arduino led pwm serial sensor">
+      <div class="tag"><i class="fa-solid fa-microchip"></i> Arduino</div>
+      <h3>تشغيل LED</h3>
+
+<pre><code>int led = 13;
+void setup(){ pinMode(led, OUTPUT); }
+void loop(){ digitalWrite(led, HIGH); delay(500); digitalWrite(led, LOW); delay(500); }
+</code></pre><p class="meta">استخدم المقاومات، وتعلّم قراءة الداتا شيت للحساسات.</p>
+    </article>
+    <article class="card col-6 topic" data-tags="arduino serial monitor temp dht ultrasonic">
+      <div class="tag"><i class="fa-solid fa-wave-square"></i> Sensors</div>
+      <h3>قراءة حساس (مثال عام)</h3>
+
+<pre><code>// pseudo: يختلف حسب الحساس والمكتبة
+#include &lt;SomeSensor.h&gt;
+SomeSensor s;
+void setup(){ Serial.begin(9600); s.begin(); }
+void loop(){ Serial.println(s.read()); delay(1000); }
+</code></pre><p class="meta">جرّب DHT11/22 لدرجة الحرارة، وHC-SR04 للموجات فوق الصوتية.</p>
+    </article>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources" class="block" data-aos="fade-up">
+  <h2>مراجع موثوقة وكتب</h2>
+  <p class="subtitle">أفضل الروابط الرسمية والمصادر المجانية للبدء والتعمّق.</p>
+  <div class="grid">
+    <article class="card col-3 topic" data-tags="html css mdn w3schools">
+      <h3>HTML & CSS</h3>
+      <ul class="meta">
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">MDN HTML</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">MDN CSS</a></li>
+        <li><a href="https://www.w3schools.com/" target="_blank">W3Schools</a></li>
+      </ul>
+    </article>
+    <article class="card col-3 topic" data-tags="javascript mdn">
+      <h3>JavaScript</h3>
+      <ul class="meta">
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN JS</a></li>
+        <li><a href="https://javascript.info/" target="_blank">javascript.info</a></li>
+      </ul>
+    </article>
+    <article class="card col-3 topic" data-tags="c++ cpp">
+      <h3>C++</h3>
+      <ul class="meta">
+        <li><a href="https://www.learncpp.com/" target="_blank">LearnCpp</a></li>
+        <li><a href="https://en.cppreference.com/w/" target="_blank">cppreference</a></li>
+      </ul>
+    </article>
+    <article class="card col-3 topic" data-tags="python ai data">
+      <h3>Python</h3>
+      <ul class="meta">
+        <li><a href="https://docs.python.org/3/" target="_blank">Official Docs</a></li>
+        <li><a href="https://pandas.pydata.org/docs/" target="_blank">pandas</a></li>
+      </ul>
+    </article>
+
+    <article class="card col-3 topic" data-tags="java spring android">
+      <h3>Java</h3>
+      <ul class="meta">
+        <li><a href="https://docs.oracle.com/javase/specs/" target="_blank">Java Specs</a></li>
+        <li><a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a></li>
+      </ul>
+    </article>
+    <article class="card col-3 topic" data-tags="c# dotnet">
+      <h3>C#</h3>
+      <ul class="meta">
+        <li><a href="https://learn.microsoft.com/dotnet/" target="_blank">.NET Docs</a></li>
+        <li><a href="https://learn.microsoft.com/dotnet/csharp/" target="_blank">C# Guide</a></li>
+      </ul>
+    </article>
+    <article class="card col-3 topic" data-tags="php laravel">
+      <h3>PHP</h3>
+      <ul class="meta">
+        <li><a href="https://www.php.net/docs.php" target="_blank">PHP Docs</a></li>
+        <li><a href="https://laravel.com/docs" target="_blank">Laravel Docs</a></li>
+      </ul>
+    </article>
+    <article class="card col-3 topic" data-tags="node express">
+      <h3>Node.js</h3>
+      <ul class="meta">
+        <li><a href="https://nodejs.org/en/docs" target="_blank">Node Docs</a></li>
+        <li><a href="https://expressjs.com/" target="_blank">Express</a></li>
+      </ul>
+    </article>
+
+    <article class="card col-3 topic" data-tags="react nextjs">
+      <h3>React</h3>
+      <ul class="meta">
+        <li><a href="https://react.dev/learn" target="_blank">React Docs</a></li>
+        <li><a href="https://nextjs.org/docs" target="_blank">Next.js</a></li>
+      </ul>
+    </article>
+    <article class="card col-3 topic" data-tags="arduino sensors electronics">
+      <h3>Arduino</h3>
+      <ul class="meta">
+        <li><a href="https://docs.arduino.cc/" target="_blank">Arduino Docs</a></li>
+        <li><a href="https://www.arduino.cc/reference/en/" target="_blank">Reference</a></li>
+      </ul>
+    </article>
+    <article class="card col-6 topic" data-tags="free courses practice projects">
+      <h3>كورسات وتمارين</h3>
+      <ul class="meta">
+        <li><a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a></li>
+        <li><a href="https://www.codecademy.com/" target="_blank">Codecademy</a></li>
+        <li><a href="https://www.udemy.com/" target="_blank">Udemy</a></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+  </main>  <!-- FOOTER -->  <footer>
+    <p>© 2025 أكاديمية البرمجة الشاملة — تصميم فخم، تعلّم ممتع، نتائج قوية.</p>
+  </footer>  <!-- Floating Buttons -->  <div class="fab">
+    <button id="backTop" title="أعلى"><i class="fa-solid fa-arrow-up"></i></button>
+    <button id="printPage" title="طباعة"><i class="fa-solid fa-print"></i></button>
+  </div>  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>  <script>
+    // AOS animations
+    AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic' });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href.length > 1) {
+          e.preventDefault();
+          document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Back to top
+    document.getElementById('backTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Print
+    document.getElementById('printPage').onclick = () => window.print();
+
+    // Theme toggle (dark/light)
+    const html = document.documentElement;
+    const key = 'academy-theme';
+    const saved = localStorage.getItem(key);
+    if (saved === 'light') setLight();
+
+    document.getElementById('toggleTheme').addEventListener('click', () => {
+      if (html.dataset.theme === 'light') { setDark(); localStorage.setItem(key, 'dark'); }
+      else { setLight(); localStorage.setItem(key, 'light'); }
+    });
+
+    function setLight(){
+      html.dataset.theme = 'light';
+      document.body.style.background = '#f7fafc';
+      document.body.style.color = '#0f172a';
+      document.querySelectorAll('.card').forEach(c => { c.style.background = 'white'; c.style.borderColor = 'rgba(0,0,0,.08)'; });
+      document.querySelector('nav.top').style.background = 'rgba(255,255,255,.8)';
+    }
+    function setDark(){
+      html.dataset.theme = 'dark';
+      document.body.style.background = '';
+      document.body.style.color = '';
+      document.querySelectorAll('.card').forEach(c => { c.style.background = ''; c.style.borderColor = ''; });
+      document.querySelector('nav.top').style.background = 'rgba(10,15,28,.55)';
+    }
+
+    // Search filter
+    const input = document.getElementById('searchInput');
+    const topics = Array.from(document.querySelectorAll('.topic'));
+    const normalize = s => s.toLowerCase();
+    input.addEventListener('input', () => {
+      const q = normalize(input.value.trim());
+      topics.forEach(card => {
+        const text = normalize(card.innerText + ' ' + (card.dataset.tags || ''));
+        card.style.display = text.includes(q) ? '' : 'none';
+      });
+    });
+  </script></body>
 </html>
